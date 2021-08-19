@@ -14,6 +14,7 @@ func TestCommandTask(t *testing.T) {
 	// Test success
 	setupPostResponder(t, orchCommandTask, "command-task-request.json", "command-task-response.json")
 	taskRequest := &TaskRequest{
+		Description: "Sent from go-pe-client",
 		Environment: "test-env-1",
 		Task:        "package",
 		Params: map[string]string{

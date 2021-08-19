@@ -1,5 +1,7 @@
 {
+  "description": "Sent from go-pe-client",
   "environment": "test-env-1",
+  "noop": false,
   "task": "package",
   "params": {
     "action": "install",

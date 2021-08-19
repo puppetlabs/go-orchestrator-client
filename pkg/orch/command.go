@@ -38,11 +38,22 @@ type JobID struct {
 }
 
 // TaskRequest describes a task to be run
+// Environment(string):	The environment to load the task from. The default is production.
+// Scope	The PuppetDB query, list of nodes, or a node group ID. Application scopes are not allowed for task jobs. This key is required.
+// Description	A description of the job.
+// Noop	Whether to run the job in no-op mode. The default is false.
+// Task	The task to run on the targets. This key is required.
+// Params	The parameters to pass to the task. This key is required, but can be an empty object.
+// Targets	A collection of target objects used for running the task on nodes through SSH or WinRM via Bolt server.
+// Userdata	An object of arbitrary key/value data supplied to the job.
+// REF: https://puppet.com/docs/pe/2019.8/orchestrator_api_commands_endpoint.html#orchestrator_api_post_command_task
 type TaskRequest struct {
 	Environment string            `json:"environment,omitempty"`
 	Task        string            `json:"task"`
 	Params      map[string]string `json:"params"`
 	Scope       Scope             `json:"scope"`
+	Description string            `json:"description"`
+	Noop        bool              `json:"noop"`
 }
 
 // CommandScheduleTask schedules a task to run at a future date and time (POST /command/schedule_task)
